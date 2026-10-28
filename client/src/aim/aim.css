@@ -121,6 +121,12 @@ body.aim .aim-intro p, .aim-intro p { color: #e4e4e7; }
 body.aim .aim-intro.small .aim-note { color: #fff; }
 .aim-intro small { color: #fca5a5 !important; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
 .aim-intro .aim-chips span { background: #b91c1c; color: #fff; }
+body.aim .aim-intro, body.aim .panel.aim-intro { background: #18181b; color: #fff; border-color: #18181b; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+body.aim .aim-intro::after { opacity: 0.35; right: -130px; top: -130px; }
+body.aim .aim-intro h1 { color: #fff; }
+body.aim .aim-intro p { color: #e4e4e7; }
+body.aim .aim-intro .hint { color: #a1a1aa; font-size: 14px; }
+body.aim .aim-intro small { color: #fca5a5 !important; }
 .aim-intro.small { padding: 30px 18px; }
 .aim-intro.small h1 { font-size: 32px; }
 .aim-intro.small .aim-note { background: #27272a; color: #fff; text-align: left; }
