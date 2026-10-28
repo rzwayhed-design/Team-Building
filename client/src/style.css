@@ -37,3 +37,4 @@ button.link{background:none;border:0;color:#8193b8;text-decoration:underline;wid
 .team,.leader{padding-left:12px}
 .option:not(:disabled):active{transform:scale(.98)}
 .option:disabled{opacity:.5}
+.team-tools{align-items:center;margin-top:12px}.team-tools label.inline{display:inline-flex;align-items:center;gap:8px;margin:0;width:auto}.team-tools select{width:auto;margin:0;padding:6px 10px}.team-tools button{flex:0 0 auto;min-width:0}

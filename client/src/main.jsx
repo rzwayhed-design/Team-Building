@@ -3,6 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { io } from 'socket.io-client';
 import { QRCodeSVG } from 'qrcode.react';
 import './style.css';
+import './aim/aim.css';
+import { AimSetup, AimStage } from './aim/AimHost.jsx';
+import { AimPlayer } from './aim/AimPlayer.jsx';
+import { AimBank } from './aim/AimBank.jsx';
 
 // Same origin by default (server serves this app). Set VITE_SERVER_URL only if the
 // backend lives on a different domain.
@@ -22,7 +26,7 @@ const store = {
 };
 const SESSION_KEY = 'teamup-session';
 
-const ARENAS = { general: '🤝 Team Building Arena', sales: '🏆 Sales Challenge Arena' };
+const ARENAS = { general: '🤝 Team Building Arena', sales: '🏆 Sales Challenge Arena', aim: '🎯 AIM Academy Challenge' };
 
 function App() {
   const params = new URLSearchParams(location.search);
@@ -161,6 +165,10 @@ function App() {
 
   const secondsLeft = event?.deadline ? Math.max(0, Math.ceil((event.deadline - (now + offset)) / 1000)) : 0;
   const ready = event && session && event.code === session.code;
+  const aimTheme = (ready && (event.arena === 'aim' || event.gameId === 'aim')) || (view === 'home' && arena === 'aim');
+  useEffect(() => {
+    document.body.classList.toggle('aim', !!aimTheme);
+  }, [aimTheme]);
 
   return (
     <main>
@@ -185,6 +193,7 @@ function App() {
               <select id="arena" value={arena} onChange={e => setArena(e.target.value)}>
                 <option value="general">{ARENAS.general}</option>
                 <option value="sales">{ARENAS.sales}</option>
+                <option value="aim">{ARENAS.aim}</option>
               </select>
               <label htmlFor="teams">Number of teams</label>
               <select id="teams" value={teamCount} onChange={e => setTeamCount(Number(e.target.value))}>
@@ -220,10 +229,10 @@ function App() {
           <button className="ghost" onClick={() => resetToHome()}>Cancel</button></section>
       )}
 
-      {view === 'host' && ready && <Host event={event} games={games} call={call} secondsLeft={secondsLeft} onLeave={leave} />}
+      {view === 'host' && ready && <Host event={event} games={games} call={call} secondsLeft={secondsLeft} serverNow={now + offset} onLeave={leave} />}
       {view === 'player' && ready && (
         <Player event={event} me={event.players.find(p => p.id === session.playerId)} priv={priv} call={call}
-          secondsLeft={secondsLeft} onLeave={leave} />
+          secondsLeft={secondsLeft} serverNow={now + offset} onLeave={leave} />
       )}
 
       <footer>TEAM UP · Interactive corporate challenges</footer>
@@ -231,12 +240,20 @@ function App() {
   );
 }
 
-function Host({ event, games, call, secondsLeft, onLeave }) {
+function Host({ event, games, call, secondsLeft, serverNow, onLeave }) {
   const [copied, setCopied] = useState(false);
+  const [aimSetup, setAimSetup] = useState(false);
+  useEffect(() => {
+    if (event.status !== 'lobby') setAimSetup(false);
+  }, [event.status]);
+  const aimActive = event.gameId === 'aim' && (event.status === 'playing' || event.status === 'gameover');
+  const aimGame = games.find(g => g.id === 'aim');
   const [editing, setEditing] = useState(null);
   const [draft, setDraft] = useState('');
   const game = games.find(g => g.id === event.gameId);
-  const available = games.filter(g => g.arena === event.arena);
+  const available = games
+    .filter(g => g.arena === event.arena || g.arena === 'any' || (event.arena === 'aim' && g.arena === 'general'))
+    .sort((x, y) => (event.arena === 'aim' ? (y.id === 'aim') - (x.id === 'aim') : 0));
   const joinUrl = `${location.origin}/?join=${event.code}`;
   const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
   const result = event.results.at(-1);
@@ -253,14 +270,14 @@ function Host({ event, games, call, secondsLeft, onLeave }) {
 
   return (
     <>
-      <div className="heading">
+      {!aimActive && <div className="heading">
         <div>
           <small>ORGANIZER</small>
           <h1>{event.title}</h1>
           <p>{ARENAS[event.arena]}</p>
         </div>
         <div className="code">PIN: {event.code}</div>
-      </div>
+      </div>}
 
       {event.status === 'lobby' && (
         <div className="hostgrid">
@@ -299,17 +316,36 @@ function Host({ event, games, call, secondsLeft, onLeave }) {
                 </div>
               </div>
             ))}
+            <div className="row team-tools">
+              <label className="inline">Teams
+                <select value={event.teams.length} onChange={e => call('host:teamCount', { count: Number(e.target.value) })}>
+                  {[2, 3, 4, 5, 6].map(n => <option key={n} value={n}>{n}</option>)}
+                </select>
+              </label>
+              <button className="ghost small" disabled={event.players.length < 2} onClick={() => call('host:shuffleTeams')}>Shuffle into balanced teams</button>
+            </div>
             <p className="hint">Click a team name to rename it. Use the menu on a name to move a player.</p>
           </article>
         </div>
       )}
 
-      {event.status === 'lobby' && (
+      {event.status === 'lobby' && aimSetup && <AimSetup call={call} game={aimGame} onCancel={() => setAimSetup(false)} />}
+
+      {event.status === 'lobby' && !aimSetup && (
         <section className="panel">
           <h2>Choose a game</h2>
           {teamsWithPlayers < 2 && <p className="hint">Waiting for players in at least 2 teams…</p>}
           <div className="gamegrid">
-            {available.map(g => (
+            {available.map(g => g.id === 'aim' ? (
+              <article className="game aim-card" key={g.id}>
+                <small>{g.skill} · {g.rounds} rounds · {g.duration}</small>
+                <h3>{g.name}</h3>
+                <p className="aim-tagline">{g.tagline}</p>
+                <p>{g.description}</p>
+                <div className="meta"><span>👥 {g.audience}</span><span>🏆 {g.modeLabel}</span><span>📈 {g.difficulty}</span></div>
+                <button disabled={teamsWithPlayers < 2} onClick={() => setAimSetup(true)}>Set up the challenge →</button>
+              </article>
+            ) : (
               <article className="game" key={g.id}>
                 <small>{g.skill} · {g.rounds} rounds · {g.duration}s each</small>
                 <h3>{g.name}</h3>
@@ -322,7 +358,9 @@ function Host({ event, games, call, secondsLeft, onLeave }) {
         </section>
       )}
 
-      {(event.status === 'playing' || event.status === 'review') && s && (
+      {aimActive && <AimStage event={event} call={call} serverNow={serverNow} onLeave={onLeave} />}
+
+      {!aimActive && (event.status === 'playing' || event.status === 'review') && s && (
         <section className="panel center stage">
           <small>{game?.skill} · Round {event.round + 1}/{event.roundTotal}</small>
           <h2>{game?.name}</h2>
@@ -357,7 +395,7 @@ function Host({ event, games, call, secondsLeft, onLeave }) {
         </section>
       )}
 
-      {event.status === 'gameover' && (
+      {event.status === 'gameover' && !aimActive && (
         <section className="panel center">
           <h2>🏆 {game?.name} complete!</h2>
           <Winner event={event} />
@@ -376,13 +414,13 @@ function Host({ event, games, call, secondsLeft, onLeave }) {
         </section>
       )}
 
-      <Leaderboard event={event} />
+      {!aimActive && <Leaderboard event={event} />}
       {event.status !== 'finished' && <p className="center"><button className="link" onClick={onLeave}>Leave organizer screen</button></p>}
     </>
   );
 }
 
-function Player({ event, me, priv, call, secondsLeft, onLeave }) {
+function Player({ event, me, priv, call, secondsLeft, serverNow, onLeave }) {
   if (!me) {
     return (
       <section className="panel center narrow">
@@ -398,6 +436,15 @@ function Player({ event, me, priv, call, secondsLeft, onLeave }) {
   const myResult = result?.answers.find(a => a.team === me.team);
   const clues = priv?.code === event.code && priv.round === event.round ? priv.clues : [];
   const teammates = event.players.filter(p => p.team === me.team && p.id !== me.id);
+
+  if (event.gameId === 'aim' && (event.status === 'playing' || event.status === 'gameover')) {
+    return (
+      <>
+        <AimPlayer event={event} me={me} priv={priv} call={call} serverNow={serverNow} onLeave={onLeave} />
+        <p className="center"><button className="link" onClick={onLeave}>Leave event</button></p>
+      </>
+    );
+  }
 
   return (
     <>
@@ -488,4 +535,8 @@ function Leaderboard({ event, myTeam }) {
   );
 }
 
-createRoot(document.getElementById('root')).render(<App />);
+function Root() {
+  return new URLSearchParams(location.search).has('aim-bank') ? <AimBank /> : <App />;
+}
+
+createRoot(document.getElementById('root')).render(<Root />);
