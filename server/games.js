@@ -180,6 +180,25 @@ export const games = [
 
 export const getGame = id => games.find(g => g.id === id);
 
+// The AIM Academy Challenge is a separate, configurable experience (see ./aim/).
+// It appears in every arena's game library.
+export const AIM_GAME = {
+  id: 'aim',
+  arena: 'any',
+  name: 'AIM Academy Challenge',
+  tagline: 'Faster. Stronger. Better. Together.',
+  description: 'How well do you know AIM? Compete, collaborate, and discover what makes us Faster, Stronger, Better.',
+  skill: 'Academy Team Building',
+  audience: 'Coaches, staff, and members',
+  duration: '60–75 minutes',
+  modeLabel: 'Team competition',
+  difficulty: 'Intermediate to Advanced',
+  rounds: 5,
+  configurable: true,
+};
+
 // Public catalogue: no answers or clues.
-export const catalogue = () =>
-  games.map(({ scenarios, ...g }) => ({ ...g, rounds: scenarios.length, hasClues: scenarios.some(s => s.clues) }));
+export const catalogue = () => [
+  ...games.map(({ scenarios, ...g }) => ({ ...g, rounds: scenarios.length, hasClues: scenarios.some(s => s.clues) })),
+  AIM_GAME,
+];

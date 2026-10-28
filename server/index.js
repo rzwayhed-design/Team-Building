@@ -9,11 +9,16 @@ import { fileURLToPath } from 'url';
 import { Server } from 'socket.io';
 import { createEngine } from './engine.js';
 import { catalogue } from './games.js';
+import { createAimStore, ValidationError, STATUS_LABELS } from './aim/store.js';
+import { timingSafeEqual, createHash } from 'crypto';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT) || 3001;
 const DATA_FILE = process.env.DATA_FILE || path.join(__dirname, 'data', 'events.json');
 const CLIENT_DIST = path.resolve(__dirname, '../client/dist');
+// AIM question bank edits are saved next to the event data. Editing requires AIM_ADMIN_KEY.
+const AIM_BANK_FILE = process.env.AIM_BANK_FILE || path.join(path.dirname(DATA_FILE), 'aim-bank.json');
+const AIM_ADMIN_KEY = process.env.AIM_ADMIN_KEY || '';
 // Extra origins allowed to connect (only needed if the web app is hosted on a different domain).
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || '')
   .split(',')
@@ -77,7 +82,10 @@ const io = new Server(server, {
   allowRequest: (req, cb) => cb(null, originAllowed(req)),
 });
 
+const aimStore = createAimStore({ file: AIM_BANK_FILE });
+
 const engine = createEngine({
+  aimStore,
   onUpdate: (code, state) => io.to(`event:${code}`).emit('event:update', state),
   onPrivate: (code, playerId, state) => io.to(`player:${code}:${playerId}`).emit('player:private', state),
   onChange: scheduleSave,
@@ -95,6 +103,42 @@ setInterval(() => engine.sweep(), 10 * 60 * 1000).unref();
 
 app.get('/healthz', (req, res) => res.json({ ok: true, events: engine.size }));
 app.get('/api/games', (req, res) => res.json(catalogue()));
+// ---------- AIM Academy Challenge: question bank API ----------
+const keyHash = k => createHash('sha256').update(String(k)).digest();
+function aimAdmin(req, res, next) {
+  if (!AIM_ADMIN_KEY) return res.status(503).json({ error: 'Question bank editing is turned off. Set AIM_ADMIN_KEY on the server to enable it.' });
+  const given = req.get('x-aim-key') || '';
+  if (!timingSafeEqual(keyHash(given), keyHash(AIM_ADMIN_KEY))) {
+    return setTimeout(() => res.status(401).json({ error: 'Wrong question bank key' }), 400);
+  }
+  next();
+}
+const aimJson = express.json({ limit: '2mb' });
+const aimRoute = fn => (req, res) => {
+  try {
+    res.json(fn(req) ?? { ok: true });
+  } catch (err) {
+    if (err instanceof ValidationError) return res.status(400).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
+  }
+};
+app.get('/api/aim/overview', aimRoute(() => ({ ...aimStore.overview(), editing: !!AIM_ADMIN_KEY })));
+app.get('/api/aim/bank', aimAdmin, aimRoute(() => ({ ...aimStore.getBank(), statusLabels: STATUS_LABELS })));
+app.post('/api/aim/questions', aimAdmin, aimJson, aimRoute(req => aimStore.upsertQuestion({ ...req.body, id: undefined })));
+app.put('/api/aim/questions/:id', aimAdmin, aimJson, aimRoute(req => aimStore.upsertQuestion({ ...req.body, id: req.params.id })));
+app.delete('/api/aim/questions/:id', aimAdmin, aimRoute(req => ({ ok: aimStore.deleteQuestion(req.params.id) })));
+app.post('/api/aim/status', aimAdmin, aimJson, aimRoute(req => ({ updated: aimStore.setStatus(req.body.ids || [], req.body.status, req.body.active) })));
+app.post('/api/aim/import', aimAdmin, aimJson, aimRoute(req => {
+  const list = Array.isArray(req.body) ? req.body : req.body?.questions;
+  return aimStore.importQuestions(list, { replace: !!req.body?.replace });
+}));
+app.put('/api/aim/profile', aimAdmin, aimJson, aimRoute(req => aimStore.setProfile(req.body)));
+app.post('/api/aim/configs', aimAdmin, aimJson, aimRoute(req => aimStore.saveConfig(req.body)));
+app.delete('/api/aim/configs/:id', aimAdmin, aimRoute(req => aimStore.deleteConfig(req.params.id)));
+app.post('/api/aim/reset', aimAdmin, aimRoute(() => aimStore.resetToDefaults()));
+app.get('/api/aim/verify-key', aimAdmin, (req, res) => res.json({ ok: true }));
+
 app.get('/api/events/:code', (req, res) => {
   const e = engine.getPublic(req.params.code);
   if (!e) return res.status(404).json({ error: 'Event not found' });
@@ -204,6 +248,15 @@ io.on('connection', socket => {
     return engine.answer({ code: p.code, playerId: p.id, choice });
   });
 
+  const player = fn => d => {
+    const p = socket.data.player;
+    if (!p) return { error: 'You are not in an event' };
+    return fn(p, d);
+  };
+  on('aim:answer', player((p, d) => engine.aim.answer(p.code, p.id, d)));
+  on('aim:proposal', player((p, d) => engine.aim.saveProposal(p.code, p.id, d)));
+  on('aim:vote', player((p, d) => engine.aim.vote(p.code, p.id, d.team)));
+
   on('player:leave', () => {
     const p = socket.data.player;
     leaveCurrent();
@@ -215,7 +268,13 @@ io.on('connection', socket => {
     if (!h) return { error: 'Not authorized' };
     return fn(h);
   };
-  on('host:start', d => host(h => engine.startGame(h.code, h.secret, d.gameId))());
+  on('host:start', d => host(h => engine.startGame(h.code, h.secret, d.gameId, d.options || {}))());
+  on('host:teamCount', d => host(h => engine.setTeamCount(h.code, h.secret, d.count))());
+  on('host:shuffleTeams', host(h => engine.shuffleTeams(h.code, h.secret)));
+  // AIM Academy Challenge
+  on('aim:next', host(h => engine.aim.next(h.code, h.secret)));
+  on('aim:scoreItem', d => host(h => engine.aim.scoreItem(h.code, h.secret, d))());
+  on('aim:scoreProposal', d => host(h => engine.aim.scoreProposal(h.code, h.secret, d))());
   on('host:endRound', host(h => engine.endRoundNow(h.code, h.secret)));
   on('host:next', host(h => engine.next(h.code, h.secret)));
   on('host:lobby', d => host(h => engine.backToLobby(h.code, h.secret, { resetScores: !!d.resetScores }))());

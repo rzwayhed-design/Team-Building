@@ -3,6 +3,7 @@
 
 import { randomBytes } from 'crypto';
 import { getGame } from './games.js';
+import { createAim } from './aim/engine.js';
 
 export const LIMITS = {
   maxEvents: 500,
@@ -23,10 +24,12 @@ export function createEngine({
   now = () => Date.now(),
   setTimer = setTimeout,
   clearTimer = clearTimeout,
+  aimStore = null, // AIM Academy Challenge question bank (optional)
 } = {}) {
   const events = new Map();
   const timers = new Map();
   const connections = new Map(); // `${code}:${playerId}` -> open socket count (not persisted)
+  const isConnected = (code, playerId) => (connections.get(`${code}:${playerId}`) || 0) > 0;
 
   const find = code => events.get(String(code || '').toUpperCase().trim());
   const scenarioOf = e => (e.gameId ? getGame(e.gameId)?.scenarios[e.round] : null);
@@ -56,13 +59,15 @@ export function createEngine({
       answeredTeams: Object.keys(e.answers).map(Number),
       results: e.results,
       scenario: s ? { question: s.question, choices: s.choices, hasClues: !!s.clues } : null,
+      aim: e.gameId === 'aim' && aim ? aim.publicState(e) : null,
     };
   }
 
   function privateState(e, playerId) {
     const s = scenarioOf(e);
     const clues = e.status === 'playing' && s?.clues ? e.clueAssignments[playerId] || [] : [];
-    return { code: e.code, round: e.round, clues };
+    const aimState = e.gameId === 'aim' && aim ? aim.privateState(e, playerId) : null;
+    return { code: e.code, round: e.round, clues, aim: aimState };
   }
 
   function publish(e) {
@@ -74,6 +79,21 @@ export function createEngine({
   function sendPrivateToAll(e) {
     for (const id of Object.keys(e.players)) onPrivate(e.code, id, privateState(e, id));
   }
+
+  const aim = aimStore
+    ? createAim({
+        store: aimStore,
+        now,
+        setTimer,
+        clearTimer,
+        publish,
+        sendPrivateAll: sendPrivateToAll,
+        isConnected,
+        onFinish: e => {
+          e.status = 'gameover';
+        },
+      })
+    : null;
 
   // Spread every clue across the team, whatever its size:
   // 1 player gets all 4 clues, 2 players get 2 each, 6 players: everyone gets one (some repeat).
@@ -170,7 +190,7 @@ export function createEngine({
       code,
       secret: hex(20),
       title: clean(title, 80) || 'Team Up Event',
-      arena: arena === 'sales' ? 'sales' : 'general',
+      arena: ['sales', 'aim'].includes(arena) ? arena : 'general',
       status: 'lobby',
       gameId: null,
       round: 0,
@@ -238,10 +258,30 @@ export function createEngine({
     publish(e);
   }
 
-  function startGame(code, secret, gameId) {
+  function startGame(code, secret, gameId, options = {}) {
     return hostAction(code, secret, e => {
+      if (gameId === 'aim') {
+        if (!aim) return { error: 'The AIM Academy Challenge is not available on this server' };
+        if (Object.keys(e.players).length < 2) return { error: 'At least 2 players are needed to start' };
+        if (teamsInPlay(e).length < 2) return { error: 'At least 2 teams need players' };
+        e.teams.forEach(t => (t.score = 0));
+        Object.values(e.players).forEach(p => (p.score = 0));
+        const r = aim.start(e, options);
+        if (r.error) return r;
+        clearRoundTimer(e);
+        e.gameId = 'aim';
+        e.round = 0;
+        e.results = [];
+        e.answers = {};
+        e.status = 'playing';
+        e.deadline = null;
+        publish(e);
+        sendPrivateToAll(e);
+        return { ok: true };
+      }
       const g = getGame(gameId);
-      if (!g || g.arena !== e.arena) return { error: 'Invalid game' };
+      const arenaOk = g && (g.arena === e.arena || (e.arena === 'aim' && g.arena === 'general'));
+      if (!arenaOk) return { error: 'Invalid game' };
       if (Object.keys(e.players).length < 2) return { error: 'At least 2 players are needed to start' };
       if (teamsInPlay(e).length < 2) return { error: 'At least 2 teams need players' };
       e.gameId = g.id;
@@ -256,7 +296,7 @@ export function createEngine({
 
   function answer({ code, playerId, choice } = {}) {
     const e = find(code);
-    if (!e || e.status !== 'playing') return { error: 'This round is not active' };
+    if (!e || e.status !== 'playing' || e.gameId === 'aim') return { error: 'This round is not active' };
     const p = e.players[playerId];
     if (!p) return { error: 'Player not found' };
     if (e.answers[p.team] !== undefined) return { error: 'Your team has already answered' };
@@ -271,7 +311,7 @@ export function createEngine({
 
   function endRoundNow(code, secret) {
     return hostAction(code, secret, e => {
-      if (e.status !== 'playing') return { error: 'No round is running' };
+      if (e.status !== 'playing' || e.gameId === 'aim') return { error: 'No round is running' };
       finishRound(e.code);
       return { ok: true };
     });
@@ -279,7 +319,7 @@ export function createEngine({
 
   function next(code, secret) {
     return hostAction(code, secret, e => {
-      if (e.status !== 'review') return { error: 'Finish the current round first' };
+      if (e.status !== 'review' || e.gameId === 'aim') return { error: 'Finish the current round first' };
       e.round += 1;
       if (e.round >= getGame(e.gameId).scenarios.length) {
         e.status = 'gameover';
@@ -293,6 +333,8 @@ export function createEngine({
   function backToLobby(code, secret, { resetScores = false } = {}) {
     return hostAction(code, secret, e => {
       clearRoundTimer(e);
+      if (aim && e.aim) aim.stop(e);
+      delete e.aim;
       e.roundToken += 1;
       e.status = 'lobby';
       e.gameId = null;
@@ -344,6 +386,7 @@ export function createEngine({
   function endEvent(code, secret) {
     return hostAction(code, secret, e => {
       clearRoundTimer(e);
+      if (aim && e.aim) aim.stop(e);
       e.roundToken += 1;
       e.status = 'finished';
       e.deadline = null;
@@ -351,6 +394,58 @@ export function createEngine({
       return { ok: true };
     });
   }
+
+  // Lobby team setup: change the number of teams, or shuffle players into balanced teams.
+  function setTeamCount(code, secret, count) {
+    return hostAction(code, secret, e => {
+      if (e.status !== 'lobby') return { error: 'Change teams from the lobby' };
+      const n = Math.min(LIMITS.maxTeams, Math.max(LIMITS.minTeams, parseInt(count, 10) || 2));
+      while (e.teams.length < n) e.teams.push({ name: TEAM_NAMES[e.teams.length] || `Team ${e.teams.length + 1}`, score: 0 });
+      e.teams.length = n;
+      for (const p of Object.values(e.players)) {
+        if (p.team < n) continue;
+        const counts = e.teams.map((_, i) => Object.values(e.players).filter(q => q.team === i).length);
+        p.team = counts.indexOf(Math.min(...counts));
+      }
+      publish(e);
+      return { ok: true };
+    });
+  }
+
+  function shuffleTeams(code, secret) {
+    return hostAction(code, secret, e => {
+      if (e.status === 'playing') return { error: 'Wait until the game ends' };
+      const ps = Object.values(e.players);
+      for (let i = ps.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [ps[i], ps[j]] = [ps[j], ps[i]];
+      }
+      ps.forEach((p, i) => (p.team = i % e.teams.length));
+      publish(e);
+      return { ok: true };
+    });
+  }
+
+  // ---- AIM Academy Challenge actions ----
+  const aimHost = (code, secret, fn) =>
+    hostAction(code, secret, e => {
+      if (!aim || e.gameId !== 'aim' || !e.aim) return { error: 'No AIM challenge is running' };
+      return fn(e);
+    });
+  const aimPlayer = (code, playerId, fn) => {
+    const e = find(code);
+    if (!aim || !e || e.gameId !== 'aim' || !e.aim) return { error: 'No AIM challenge is running' };
+    if (!e.players[playerId]) return { error: 'Player not found' };
+    return fn(e);
+  };
+  const aimApi = {
+    next: (code, secret) => aimHost(code, secret, e => aim.next(e)),
+    scoreItem: (code, secret, data) => aimHost(code, secret, e => aim.scoreItem(e, data)),
+    scoreProposal: (code, secret, data) => aimHost(code, secret, e => aim.scoreProposal(e, data)),
+    answer: (code, playerId, data) => aimPlayer(code, playerId, e => aim.answer(e, playerId, data)),
+    saveProposal: (code, playerId, data) => aimPlayer(code, playerId, e => aim.saveProposal(e, playerId, data)),
+    vote: (code, playerId, team) => aimPlayer(code, playerId, e => aim.vote(e, playerId, team)),
+  };
 
   function getPublic(code) {
     const e = find(code);
@@ -380,7 +475,9 @@ export function createEngine({
     for (const e of data.events) {
       if (!e?.code || !e.secret) continue;
       events.set(e.code, e);
-      if (e.status === 'playing') {
+      if (e.status === 'playing' && e.gameId === 'aim') {
+        if (aim && e.aim) aim.resume(e);
+      } else if (e.status === 'playing') {
         if (!e.deadline || e.deadline <= now()) finishRound(e.code);
         else scheduleRoundEnd(e);
       }
@@ -391,6 +488,7 @@ export function createEngine({
   return {
     createEvent, authorizeHost, joinPlayer, connect, disconnect, startGame, answer, endRoundNow,
     next, backToLobby, renameTeam, movePlayer, removePlayer, endEvent, getPublic, getPrivate,
+    setTeamCount, shuffleTeams, aim: aimApi,
     sweep, serialize, load, finishRound,
     get size() { return events.size; },
   };
