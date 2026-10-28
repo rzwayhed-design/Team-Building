@@ -1,0 +1,1685 @@
+{
+  "version": 1,
+  "profile": {
+    "name": "AIM Academy",
+    "meaning": "Assess – Identify – Master",
+    "established": "2021",
+    "origin": "Soccer academy",
+    "founder": "Nabil El Fakih (Founder & CEO)",
+    "mission": "Grow the academy Faster, Stronger, and even Better to positively impact the development of youth in our community and create a lifelong passion for the sport.",
+    "vision": "Develop opportunities in sport by providing a professional environment where all can reach their full potential.",
+    "figuresNote": "Figures as reported in the AIM catalogue (2025), not live figures: 20 activities, 70 employees (2 PWD), 1,000+ members, 12+ coach trainings/certifications, 500 trees planted.",
+    "activationDate": {
+      "value": "",
+      "status": "pending",
+      "note": "Not stated in the catalogue — enter when confirmed."
+    },
+    "coreValues": {
+      "values": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "status": "pending",
+      "note": "The catalogue mentions 5 core values but does not list them — enter when confirmed."
+    }
+  },
+  "rubric5": [
+    {
+      "key": "alignment",
+      "label": "Alignment with AIM’s mission",
+      "weight": 30
+    },
+    {
+      "key": "feasibility",
+      "label": "Feasibility",
+      "weight": 25
+    },
+    {
+      "key": "impact",
+      "label": "Community or member impact",
+      "weight": 25
+    },
+    {
+      "key": "creativity",
+      "label": "Creativity",
+      "weight": 20
+    }
+  ],
+  "configs": [
+    {
+      "id": "standard",
+      "name": "Standard (about 60–75 min)",
+      "rounds": {
+        "1": {
+          "count": 10,
+          "mode": "individual"
+        },
+        "2": {
+          "count": 10,
+          "mode": "individual"
+        },
+        "3": {
+          "count": 3,
+          "mode": "collaborative"
+        },
+        "4": {
+          "count": 6,
+          "mode": "consensus"
+        },
+        "5": {
+          "count": 4,
+          "mode": "proposal"
+        }
+      },
+      "randomize": true,
+      "includePending": false
+    },
+    {
+      "id": "quick",
+      "name": "Quick (about 30 min)",
+      "rounds": {
+        "1": {
+          "count": 6,
+          "mode": "consensus"
+        },
+        "2": {
+          "count": 6,
+          "mode": "consensus"
+        },
+        "3": {
+          "count": 2,
+          "mode": "collaborative"
+        },
+        "4": {
+          "count": 3,
+          "mode": "consensus"
+        },
+        "5": {
+          "count": 4,
+          "mode": "proposal"
+        }
+      },
+      "randomize": true,
+      "includePending": false
+    }
+  ],
+  "questions": [
+    {
+      "id": "r1-01",
+      "round": 1,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "In which year was AIM Academy established?",
+      "choices": [
+        "2021",
+        "2019",
+        "2020",
+        "2022"
+      ],
+      "answer": 0,
+      "explanation": "About Us: “Established in 2021, our journey began as a soccer academy…”",
+      "source": "Catalogue p.2",
+      "area": "History & identity"
+    },
+    {
+      "id": "r1-02",
+      "round": 1,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "What do the letters A-I-M stand for?",
+      "choices": [
+        "Assess – Identify – Master",
+        "Aspire – Inspire – Motivate",
+        "Assess – Improve – Mentor",
+        "Achieve – Inspire – Master"
+      ],
+      "answer": 0,
+      "explanation": "The AIM logo reads “Assess • Identify • Master”.",
+      "source": "Catalogue p.1 (logo)",
+      "area": "History & identity"
+    },
+    {
+      "id": "r1-03",
+      "round": 1,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "AIM’s journey began as which kind of academy?",
+      "choices": [
+        "A soccer academy",
+        "A multi-sport youth academy",
+        "A music and arts academy",
+        "An after-school education centre"
+      ],
+      "answer": 0,
+      "explanation": "About Us: “our journey began as a soccer academy”. Other disciplines came later under the Faster pillar.",
+      "source": "Catalogue p.2",
+      "area": "History & identity"
+    },
+    {
+      "id": "r1-04",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "Which statement most accurately reflects AIM’s vision?",
+      "choices": [
+        "To develop opportunities in sport through a professional environment where everyone can reach their full potential.",
+        "To diversify academy activities while expanding youth participation across disciplines.",
+        "To strengthen coaching standards and provide structured development opportunities for young athletes.",
+        "To build a sustainable academy through partnerships, certified training, and community engagement."
+      ],
+      "answer": 0,
+      "explanation": "Vision: “Develop opportunities in sport by providing a professional environment where all can reach their full potential.” The other options describe the pillars or the board’s growth model.",
+      "source": "Catalogue p.3",
+      "area": "Mission & vision"
+    },
+    {
+      "id": "r1-05",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "AIM’s mission is to grow the academy Faster, Stronger and even Better to positively impact youth development in the community — and to do what else?",
+      "choices": [
+        "Create a lifelong passion for the sport",
+        "Produce professional players for national clubs",
+        "Build a network of certified coaches across Lebanon",
+        "Give every child access to a professional environment"
+      ],
+      "answer": 0,
+      "explanation": "Mission: “…to positively impact the development of youth in our community and create a lifelong passion for the sport.” The last option echoes the vision, not the mission.",
+      "source": "Catalogue p.3",
+      "area": "Mission & vision"
+    },
+    {
+      "id": "r1-06",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "What best describes the difference between AIM’s mission and its vision?",
+      "choices": [
+        "The mission says how AIM grows (Faster, Stronger, Better) to impact youth; the vision describes the opportunities and environment AIM provides",
+        "The mission focuses on coaches and staff; the vision focuses on members and their families who join AIM",
+        "The mission covers community projects; the vision covers sports results and competition success",
+        "The mission is about education programs; the vision is about sport and physical activity only"
+      ],
+      "answer": 0,
+      "explanation": "Mission = grow Faster, Stronger, Better to impact youth and create lifelong passion. Vision = develop opportunities in sport through a professional environment where all can reach their potential.",
+      "source": "Catalogue p.3",
+      "area": "Mission & vision"
+    },
+    {
+      "id": "r1-07",
+      "round": 1,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "Who is AIM’s Founder & CEO?",
+      "choices": [
+        "Nabil El Fakih",
+        "Wael Shehayeb",
+        "Ali Abdel Khalek",
+        "Sami Baz"
+      ],
+      "answer": 0,
+      "explanation": "Nabil El Fakih is Founder & CEO. The others are AIM board members.",
+      "source": "Catalogue p.4",
+      "area": "Leadership"
+    },
+    {
+      "id": "r1-08",
+      "round": 1,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "Besides leading AIM, which corporate role does the catalogue list for the CEO?",
+      "choices": [
+        "PepsiCo GTM Modernization Sr. Manager – AMESA & APAC",
+        "PepsiCo Regional Sales Director – Levant",
+        "Coca-Cola Commercial Excellence Manager – MENA",
+        "Unilever Supply Chain Lead – AMESA"
+      ],
+      "answer": 0,
+      "explanation": "The CEO profile lists “PepsiCo GTM Modernization, Sr. Manager – AMESA & APAC”.",
+      "source": "Catalogue p.4",
+      "area": "Leadership"
+    },
+    {
+      "id": "r1-09",
+      "round": 1,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "Which two community roles does the catalogue list for the CEO?",
+      "choices": [
+        "Vice president of Akhaa Ahli Aley and vice president of Oxygen NGO",
+        "President of Jabal Sporting Club and board member of Farah Social Foundation",
+        "Executive committee member of the Lebanese Football Association and of Go Green",
+        "Founder of Heroes Initiative and of Yalla Return"
+      ],
+      "answer": 0,
+      "explanation": "CEO profile: Akhaa Ahli Aley vice president; Oxygen NGO vice president. The second option describes board member Ali Abdel Khalek.",
+      "source": "Catalogue p.4",
+      "area": "Leadership"
+    },
+    {
+      "id": "r1-10",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "In his message, the CEO says AIM is shaping not just athletes, but…",
+      "choices": [
+        "future leaders who will make a meaningful impact in their communities",
+        "certified coaches who will lead the next generation of academies",
+        "professional players ready for national and international teams",
+        "community volunteers who will support local NGOs and clubs"
+      ],
+      "answer": 0,
+      "explanation": "Message from the CEO: “we are shaping not just athletes, but future leaders who will make a meaningful impact in their communities and beyond.”",
+      "source": "Catalogue p.4",
+      "area": "Leadership"
+    },
+    {
+      "id": "r1-11",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "According to the CEO, AIM’s pillars aim to inspire a lifelong passion for what?",
+      "choices": [
+        "Both sport and education",
+        "Sport and healthy living",
+        "Sport and community service",
+        "Music, arts and sport"
+      ],
+      "answer": 0,
+      "explanation": "“…we strive to foster youth development and inspire a lifelong passion for both sport and education.”",
+      "source": "Catalogue p.4",
+      "area": "Leadership"
+    },
+    {
+      "id": "r1-12",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "According to the board members, which elements make up AIM’s sustainable growth model?",
+      "choices": [
+        "Training, tournaments, partnerships, value-added services and community impact",
+        "Membership fees, sponsorships, events, merchandise and coaching",
+        "Training, scholarships, competitions, media and volunteering",
+        "Coaching, facilities, partnerships, fundraising and outreach"
+      ],
+      "answer": 0,
+      "explanation": "Board message: “a sustainable model focused on training, tournaments, partnerships, value-added services, and community impact”.",
+      "source": "Catalogue p.5",
+      "area": "Growth & strategy"
+    },
+    {
+      "id": "r1-13",
+      "round": 1,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "Which AIM board member is a member of the Lebanese Football Association’s executive committee?",
+      "choices": [
+        "Wael Shehayeb",
+        "Ali Abdel Khalek",
+        "Sami Baz",
+        "Nabil El Fakih"
+      ],
+      "answer": 0,
+      "explanation": "Wael Shehayeb: member of the executive committee, Lebanese Football Association. Ali Abdel Khalek presides over Jabal Sporting Club; Sami Baz heads AIM’s legal department.",
+      "source": "Catalogue p.5",
+      "area": "Leadership"
+    },
+    {
+      "id": "r1-14",
+      "round": 1,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "The catalogue reports 1,000+ members, 20 activities and 70 employees. If membership doubled, which pillar’s work would matter most for keeping coaching quality high?",
+      "choices": [
+        "Stronger",
+        "Faster",
+        "Better",
+        "AIM Forward"
+      ],
+      "answer": 0,
+      "explanation": "Stronger covers professional training and coach certification “to upscale the capability of our team” plus curriculum and methodology — exactly what protects coaching quality during growth.",
+      "source": "Catalogue p.6–7",
+      "area": "Pillars"
+    },
+    {
+      "id": "r1-15",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "AIM reports 12+ professional trainings and coach certifications. What purpose does the catalogue give for them?",
+      "choices": [
+        "To upscale the capability of AIM’s team",
+        "To qualify coaches for national federations",
+        "To meet ministry licensing requirements",
+        "To prepare members for competitions"
+      ],
+      "answer": 0,
+      "explanation": "Stronger pillar: “12+ professional trainings/certified our coaches to upscale the capability of our team while also building a skilled curriculum & methodology”.",
+      "source": "Catalogue p.7",
+      "area": "Pillars"
+    },
+    {
+      "id": "r1-16",
+      "round": 1,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "For the past three years, AIM has focused on its 3 pillars and what else to define and drive its culture?",
+      "choices": [
+        "5 core values",
+        "4 community projects",
+        "12 coaching standards",
+        "3 strategic partnerships"
+      ],
+      "answer": 0,
+      "explanation": "Catalogue: “Over the past three years we have focused on our 3 Pillars & 5 core values to define and drive our culture.” (The five values are not listed in the catalogue.)",
+      "source": "Catalogue p.7",
+      "area": "Pillars"
+    },
+    {
+      "id": "r1-17",
+      "round": 1,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "AIM wants one new project that serves the Better pillar most directly. Which proposal fits best?",
+      "choices": [
+        "Partnering with a local NGO on a recurring community clean-up and awareness day",
+        "Adding fencing and robotics to the list of weekly activities",
+        "Running a new certification course for AIM’s gymnastics coaches",
+        "Upgrading the mobile app with online class booking"
+      ],
+      "answer": 0,
+      "explanation": "Better = community engagement (p.7). New disciplines belong to Faster; coach certification to Stronger; the app is an operational tool.",
+      "source": "Catalogue p.7",
+      "area": "Pillars"
+    },
+    {
+      "id": "r1-18",
+      "round": 1,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "A proposal adds three new disciplines (photography, swimming and coding). Which pillar does it primarily advance?",
+      "choices": [
+        "Faster",
+        "Stronger",
+        "Better",
+        "AIM Forward"
+      ],
+      "answer": 0,
+      "explanation": "Faster is the pillar of diversification: AIM “evolved to offer a diverse range of over 20 activities under our faster pillar”.",
+      "source": "Catalogue p.7",
+      "area": "Pillars"
+    },
+    {
+      "id": "r2-01",
+      "round": 2,
+      "type": "match",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "Match each program to its primary objective.",
+      "items": [
+        "Heroes Initiative",
+        "Green Influence",
+        "AIM Forward",
+        "Education"
+      ],
+      "options": [
+        "Empower individuals with special needs to master their talents",
+        "Promote sustainability and environmental responsibility",
+        "Offer specialized vocational training courses with expert trainers",
+        "Support learning through afterschool, French and Brainy programs"
+      ],
+      "answers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "Heroes (p.8), Green Influence (p.9), Education (p.10), AIM Forward (p.11).",
+      "source": "Catalogue p.8–11",
+      "area": "Programs"
+    },
+    {
+      "id": "r2-02",
+      "round": 2,
+      "type": "match",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "Match each partner or group to its part in AIM’s community work.",
+      "items": [
+        "Go Green Recycle",
+        "Yalla Return",
+        "AUB Able Summit",
+        "AIM members"
+      ],
+      "options": [
+        "Ran recycling awareness sessions with AIM",
+        "Promoted recycling under the slogan “Trash for cash”",
+        "Event where the Ahlaa Alam team took part",
+        "Helped plant 500 trees"
+      ],
+      "answers": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "explanation": "Go Green Recycle and Yalla Return partner with Green Influence (p.9); the Ahlaa Alam team (Heroes) took part in the AUB Able Summit (p.8); members supported Plant a Tree (p.9).",
+      "source": "Catalogue p.8–9",
+      "area": "Community initiatives"
+    },
+    {
+      "id": "r2-03",
+      "round": 2,
+      "type": "match",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "How does the catalogue list each organization: MOU partner or collaboration?",
+      "items": [
+        "Beirut Marathon Association",
+        "Farah Social Foundation",
+        "Fayha National Choir of Lebanon",
+        "PepsiCo",
+        "Institut Français (Deir Al Qamar)",
+        "Municipality of Aley"
+      ],
+      "options": [
+        "MOU",
+        "Collaboration"
+      ],
+      "answers": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "explanation": "AIM Profile page: MOUs include Beirut Marathon Association, Farah Social Foundation and Fayha; collaborations include PepsiCo, Institut Français and the Municipality of Aley.",
+      "source": "Catalogue p.6",
+      "area": "Partners"
+    },
+    {
+      "id": "r2-04",
+      "round": 2,
+      "type": "match",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "Sort each item into the catalogue section where it appears.",
+      "items": [
+        "Winter camp",
+        "Violin",
+        "Ahlaa Alam team",
+        "Home pickup service",
+        "Courses with expert trainers"
+      ],
+      "options": [
+        "Seasonal camps",
+        "Activities",
+        "Heroes Initiative",
+        "Green Influence",
+        "AIM Forward"
+      ],
+      "answers": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "explanation": "Camps (p.14), activities (p.12), Heroes (p.8), Green Influence (p.9), AIM Forward (p.11).",
+      "source": "Catalogue p.8–14",
+      "area": "Programs"
+    },
+    {
+      "id": "r2-05",
+      "round": 2,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "What does AIM do each week as part of the Heroes Initiative?",
+      "choices": [
+        "Hosts a different organization to join AIM’s activities",
+        "Runs an adaptive-sports clinic for partner schools",
+        "Holds a talent showcase for families and sponsors",
+        "Trains volunteers to support members with special needs"
+      ],
+      "answer": 0,
+      "explanation": "Heroes Initiative: “Each week, we host a different organization to participate in our activities.”",
+      "source": "Catalogue p.8",
+      "area": "Community initiatives"
+    },
+    {
+      "id": "r2-06",
+      "round": 2,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "In which seasons does AIM run camps?",
+      "choices": [
+        "Winter, spring and summer",
+        "Summer only",
+        "Spring and summer",
+        "Summer and winter"
+      ],
+      "answer": 0,
+      "explanation": "Catalogue: “Winter, Spring, Summer Camps”.",
+      "source": "Catalogue p.14",
+      "area": "Activities & camps"
+    },
+    {
+      "id": "r2-07",
+      "round": 2,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "How many of AIM’s 70 employees does the catalogue identify as persons with disabilities (PWD)?",
+      "choices": [
+        "2",
+        "5",
+        "7",
+        "12"
+      ],
+      "answer": 0,
+      "explanation": "AIM Profile: “70 employees (2 PWD)”.",
+      "source": "Catalogue p.6",
+      "area": "Academy profile"
+    },
+    {
+      "id": "r2-08",
+      "round": 2,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "The Faster pillar’s list of activities includes one program that the catalogue also presents as a community program. Which one?",
+      "choices": [
+        "Heroes Initiative",
+        "Green Influence",
+        "AIM Forward",
+        "Plant a Tree"
+      ],
+      "answer": 0,
+      "explanation": "The Faster pillar lists “…gymnastics, Heroes Initiative, kickboxing…” (p.7); Heroes is also a community engagement program (p.8).",
+      "source": "Catalogue p.7–8",
+      "area": "Activities & camps"
+    },
+    {
+      "id": "r2-09",
+      "round": 2,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "What is the purpose of Green Influence’s home pickup service?",
+      "choices": [
+        "To encourage sorting waste at the source",
+        "To collect donated sports equipment from members",
+        "To deliver reusable bags to new member families",
+        "To gather recyclables for the Trash for cash program"
+      ],
+      "answer": 0,
+      "explanation": "“We introduced a home pickup service to encourage sorting waste at the source.”",
+      "source": "Catalogue p.9",
+      "area": "Community initiatives"
+    },
+    {
+      "id": "r2-10",
+      "round": 2,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "How did AIM further support waste sorting beyond the pickup service?",
+      "choices": [
+        "Distributed bins and reusable bags at no cost",
+        "Sold discounted recycling bins at the AIM Center",
+        "Installed sorting stations in partner schools",
+        "Offered membership discounts for recycled items"
+      ],
+      "answer": 0,
+      "explanation": "“We distributed bins and reusable bags at no cost, making a measurable impact on the environment.”",
+      "source": "Catalogue p.9",
+      "area": "Community initiatives"
+    },
+    {
+      "id": "r2-11",
+      "round": 2,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "Which programs does the catalogue group under Education?",
+      "choices": [
+        "Afterschool, French and Brainy",
+        "Chess, Rubik’s Cube and Brainy",
+        "Afterschool, French and Chess",
+        "French, Piano and Choir"
+      ],
+      "answer": 0,
+      "explanation": "Education: “Afterschool, French, Brainy”.",
+      "source": "Catalogue p.10",
+      "area": "Programs"
+    },
+    {
+      "id": "r2-12",
+      "round": 2,
+      "type": "mcq",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "How does AIM Forward develop its vocational training courses?",
+      "choices": [
+        "With affiliate institutions and recognized expert trainers",
+        "With AIM’s certified coaches and in-house curriculum",
+        "With online courses licensed from universities",
+        "With volunteers from the Heroes Initiative"
+      ],
+      "answer": 0,
+      "explanation": "“We leverage our robust network of affiliate institutions and collaborate with expert trainers…”",
+      "source": "Catalogue p.11",
+      "area": "Programs"
+    },
+    {
+      "id": "r2-13",
+      "round": 2,
+      "type": "mcq",
+      "level": "factual",
+      "status": "verified",
+      "active": true,
+      "prompt": "Which of these is listed among AIM’s Faster-pillar activities?",
+      "choices": [
+        "Arm-wrestling",
+        "Swimming",
+        "Tennis",
+        "Basketball"
+      ],
+      "answer": 0,
+      "explanation": "The Faster pillar lists after-school program, arm-wrestling, arts and crafts, brainy kids, chess, calisthenics, choir, French, gymnastics, Heroes Initiative, kickboxing, Rubik’s cube, self-defense, summer camp, dance and music.",
+      "source": "Catalogue p.7",
+      "area": "Activities & camps"
+    },
+    {
+      "id": "r2-14",
+      "round": 2,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "AIM wants to strengthen inclusion next season. Which step builds most directly on the existing Heroes Initiative?",
+      "choices": [
+        "Invite more partner organizations into the weekly sessions and assess each participant’s talents",
+        "Launch a new robotics class that is open to all members",
+        "Certify two more gymnastics coaches for competitive squads",
+        "Add a winter camp option for older members"
+      ],
+      "answer": 0,
+      "explanation": "Heroes Initiative assesses unique talents of individuals with special needs and hosts a different organization each week (p.8).",
+      "source": "Catalogue p.8",
+      "area": "Community initiatives"
+    },
+    {
+      "id": "r2-15",
+      "round": 2,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "Which new idea extends Green Influence most consistently with what AIM already does?",
+      "choices": [
+        "Expand the home pickup service and awareness sessions to more neighbourhoods",
+        "Add an outdoor fitness class in public parks",
+        "Host a recycling-themed chess tournament for members",
+        "Offer vocational courses in sports management"
+      ],
+      "answer": 0,
+      "explanation": "Green Influence already runs awareness sessions and a home pickup service (p.9); scaling these is the most consistent extension.",
+      "source": "Catalogue p.9",
+      "area": "Community initiatives"
+    },
+    {
+      "id": "r2-16",
+      "round": 2,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "A senior coach proposes a “coach mentoring” track for new coaches. Which pillar does it most directly strengthen?",
+      "choices": [
+        "Stronger",
+        "Faster",
+        "Better",
+        "Education"
+      ],
+      "answer": 0,
+      "explanation": "Stronger = professional training, coach certification and curriculum to upscale the team’s capability (p.7).",
+      "source": "Catalogue p.7",
+      "area": "Pillars"
+    },
+    {
+      "id": "r2-17",
+      "round": 2,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "AIM wants to help young adults gain job-ready skills. Which existing initiative is the natural home?",
+      "choices": [
+        "AIM Forward",
+        "Heroes Initiative",
+        "Green Influence",
+        "After-school program"
+      ],
+      "answer": 0,
+      "explanation": "AIM Forward develops “specialized professional training courses” — vocational training (p.11).",
+      "source": "Catalogue p.11",
+      "area": "Programs"
+    },
+    {
+      "id": "r2-18",
+      "round": 2,
+      "type": "mcq",
+      "level": "strategic",
+      "status": "verified",
+      "active": true,
+      "prompt": "Which launch plan best reflects the board’s sustainable growth model for a new sports program?",
+      "choices": [
+        "A training plan, a tournament calendar, a partner organization and a community element",
+        "A premium membership tier, branded kit and a social-media campaign",
+        "A single sponsor, a free trial month and a referral discount",
+        "External coaches, a short pilot term and a parent survey"
+      ],
+      "answer": 0,
+      "explanation": "The board describes growth through training, tournaments, partnerships, value-added services and community impact (p.5).",
+      "source": "Catalogue p.5",
+      "area": "Growth & strategy"
+    },
+    {
+      "id": "r3-01",
+      "round": 3,
+      "type": "puzzle",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "Reconstruct AIM’s three pillars. Which mapping is correct?",
+      "clues": [
+        "The pillar numbered 01 is the one under which AIM grew to over 20 activities.",
+        "The pillar numbered 02 is about certifying coaches and building a curriculum.",
+        "The pillar numbered 03 is focused on community engagement projects.",
+        "In catalogue order, the pillars are named Faster, Stronger, Better."
+      ],
+      "choices": [
+        "Faster – activity diversification · Stronger – coach training & curriculum · Better – community engagement",
+        "Faster – coach training & curriculum · Stronger – activity diversification · Better – community engagement",
+        "Faster – activity diversification · Stronger – community engagement · Better – coach training & curriculum",
+        "Faster – community engagement · Stronger – coach training & curriculum · Better – activity diversification"
+      ],
+      "answer": 0,
+      "explanation": "Pillars 01 Faster (20+ activities), 02 Stronger (12+ trainings, curriculum), 03 Better (community engagement).",
+      "source": "Catalogue p.7",
+      "area": "Collaboration"
+    },
+    {
+      "id": "r3-02",
+      "round": 3,
+      "type": "puzzle",
+      "level": "application",
+      "status": "verified",
+      "active": true,
+      "prompt": "Open the Culture Lock: a 3-digit code.",
+      "clues": [
+        "Digit 1 = the number of pillars that guide AIM’s culture.",
+        "Digit 2 = the number of core values the catalogue says AIM focuses on.",
+        "Digit 3 = the number of community projects AIM launched under the Better pillar.",
+        "Check: the three digits add up to 12."
+      ],
+      "choices": [
+        "354",
+        "345",
+        "534",
+        "435"
+      ],
+      "answer": 0,
+      "explanation": "3 pillars, 5 core values, 4 Better projects → 354 (3+5+4 = 12).",
+      "source": "Catalogue p.7",
+      "area": "Collaboration"
+    },
+    {
+      "id": "r3-03",
+      "round": 3,
+      "type": "puzzle",
+      "level": "application",
+      "status": "verified",
+      "active": true,
+      "prompt": "Open the Green Vault: a 4-digit code.",
+      "clues": [
+        "Digit 1 = the number of trees AIM and its members planted, divided by 100.",
+        "Digit 2 = the last digit of the year AIM was established.",
+        "Digit 3 = the number of seasons in which AIM runs camps.",
+        "Digit 4 = digit 1 minus digit 3."
+      ],
+      "choices": [
+        "5132",
+        "5312",
+        "5123",
+        "3152"
+      ],
+      "answer": 0,
+      "explanation": "500 trees → 5; established 2021 → 1; winter, spring, summer camps → 3; 5 − 3 = 2 → 5132.",
+      "source": "Catalogue p.2, p.9, p.14",
+      "area": "Collaboration"
+    },
+    {
+      "id": "r3-04",
+      "round": 3,
+      "type": "puzzle",
+      "level": "application",
+      "status": "verified",
+      "active": true,
+      "prompt": "AIM by the numbers: what is A + B + C + D?",
+      "clues": [
+        "A = the number of activities on the AIM Profile page.",
+        "B = the number of AIM employees.",
+        "C = how many of those employees are persons with disabilities (PWD).",
+        "D = the minimum number of professional trainings/certifications for coaches. (Member numbers are not part of this sum.)"
+      ],
+      "choices": [
+        "104",
+        "102",
+        "1,102",
+        "92"
+      ],
+      "answer": 0,
+      "explanation": "20 activities + 70 employees + 2 PWD + 12 trainings = 104.",
+      "source": "Catalogue p.6–7",
+      "area": "Collaboration"
+    },
+    {
+      "id": "r3-05",
+      "round": 3,
+      "type": "puzzle",
+      "level": "application",
+      "status": "verified",
+      "active": true,
+      "prompt": "Crack the Season Code: four letters.",
+      "clues": [
+        "Letters 1–3 are the first letters of the seasons in which AIM runs camps, in the catalogue’s order.",
+        "The catalogue lists the camps starting with the coldest season.",
+        "Letter 4 is the first letter of the language class listed under Education.",
+        "The code contains no vowels."
+      ],
+      "choices": [
+        "WSSF",
+        "SSWF",
+        "WSSE",
+        "SWSF"
+      ],
+      "answer": 0,
+      "explanation": "Winter, Spring, Summer camps (p.14) → W-S-S; French under Education (p.10) → F.",
+      "source": "Catalogue p.10, p.14",
+      "area": "Collaboration"
+    },
+    {
+      "id": "r3-06",
+      "round": 3,
+      "type": "puzzle",
+      "level": "understanding",
+      "status": "verified",
+      "active": true,
+      "prompt": "Unlock AIM’s mission statement. Combine your fragments: which version is exact?",
+      "clues": [
+        "It begins: “Grow the academy…”",
+        "It includes: “…Faster, Stronger, and even Better…”",
+        "It includes: “…to positively impact the development of youth in our community…”",
+        "It ends: “…and create a lifelong passion for the sport.”"
+      ],
+      "choices": [
+        "Grow the academy Faster, Stronger, and even Better to positively impact the development of youth in our community and create a lifelong passion for the sport.",
+        "Grow the academy Faster, Stronger, and even Better to provide a professional environment where all youth in our community can reach their full potential.",
+        "Grow the academy Faster, Stronger, and Better to positively impact the development of our members and create a lifelong passion for sport and education.",
+        "Develop the academy Faster, Stronger, and even Better to positively impact youth in our community and build future leaders through sport."
+      ],
+      "answer": 0,
+      "explanation": "Mission (p.3): “Grow the academy Faster, Stronger, and even Better to positively impact the development of youth in our community and create a lifelong passion for the sport.”",
+      "source": "Catalogue p.3",
+      "area": "Collaboration"
+    },
+    {
+      "id": "r4-01",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Fair participation",
+      "prompt": "A talented child dominates every activity, while less experienced children are losing confidence. What is the most effective coaching approach?",
+      "choices": [
+        "Give the talented child leadership roles (demonstrating, mentoring) and use rotating roles and mixed-ability groups so everyone gets meaningful involvement",
+        "Move the talented child to an older, more advanced group so the current group can play at its own level",
+        "Introduce a rule limiting how often any one child can score or lead, and explain it to the whole group",
+        "Keep the current setup because competition motivates everyone, and give quieter children extra drills after class"
+      ],
+      "points": [
+        150,
+        90,
+        60,
+        30
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Includes every child meaningfully",
+          "points": 50
+        },
+        {
+          "label": "Keeps challenging the talented child",
+          "points": 40
+        },
+        {
+          "label": "Rebuilds others’ confidence",
+          "points": 40
+        },
+        {
+          "label": "Practical in a real session",
+          "points": 20
+        }
+      ],
+      "explanation": "The strongest response develops everyone: the talented child is stretched through leadership while others gain involvement — AIM’s vision of all reaching their full potential.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Fair participation"
+    },
+    {
+      "id": "r4-02",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Parent communication",
+      "prompt": "A parent is visibly upset after the final whistle because their child did not play in the tournament final. What should the coach do?",
+      "choices": [
+        "Acknowledge the frustration, arrange a private conversation once emotions settle, explain the participation approach and agree a development plan",
+        "Refer the parent to academy management to avoid a coach–parent conflict",
+        "Explain the decision immediately at the pitch side so the parent hears the reasoning",
+        "Reassure the parent that the child will start the next match to ease the tension"
+      ],
+      "points": [
+        150,
+        75,
+        60,
+        30
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Listens respectfully",
+          "points": 40
+        },
+        {
+          "label": "Transparent about selection/rotation",
+          "points": 40
+        },
+        {
+          "label": "Child-focused next steps",
+          "points": 50
+        },
+        {
+          "label": "Right time and place",
+          "points": 20
+        }
+      ],
+      "explanation": "Calm, private, transparent communication with a plan for the child builds trust; promises about selection undermine fairness.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Parent communication"
+    },
+    {
+      "id": "r4-03",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Inclusion",
+      "prompt": "A child with special needs joins a mixed group. Some children become impatient when drills slow down. What is the best approach?",
+      "choices": [
+        "Adapt the activity so everyone can take part, assign buddy roles, and talk with the group about respecting different abilities",
+        "Run a separate adapted station with an assistant coach for the first few weeks, then integrate gradually",
+        "Ask the parents what works best for their child before changing anything in the session",
+        "Keep the session unchanged and let the child join in where possible, to avoid singling them out"
+      ],
+      "points": [
+        150,
+        90,
+        75,
+        30
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Full participation",
+          "points": 50
+        },
+        {
+          "label": "Dignity — no singling out",
+          "points": 30
+        },
+        {
+          "label": "Builds a respectful peer culture",
+          "points": 40
+        },
+        {
+          "label": "Partners with the family",
+          "points": 30
+        }
+      ],
+      "explanation": "This reflects the Heroes Initiative spirit (p.8): adapt so everyone participates and build a culture that values every ability.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Inclusion"
+    },
+    {
+      "id": "r4-04",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Conflict resolution",
+      "prompt": "Two children keep arguing during team drills and blaming each other for mistakes. What should the coach do?",
+      "choices": [
+        "Pause, speak with both calmly, help them say what happened, agree a team rule, then pair them in a cooperative task",
+        "Put them on different teams for the rest of the term to keep the peace",
+        "Give both a short time-out and restart the drill",
+        "Let the team captain sort it out, since peers resolve conflicts best"
+      ],
+      "points": [
+        150,
+        75,
+        60,
+        45
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "De-escalates calmly",
+          "points": 40
+        },
+        {
+          "label": "Repairs the relationship",
+          "points": 50
+        },
+        {
+          "label": "Teaches teamwork skills",
+          "points": 40
+        },
+        {
+          "label": "Consistent and fair",
+          "points": 20
+        }
+      ],
+      "explanation": "Resolving the conflict and rebuilding cooperation teaches a life skill; separation or time-outs only pause the problem.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Conflict resolution"
+    },
+    {
+      "id": "r4-05",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Child motivation",
+      "prompt": "A 9-year-old has lost several chess games in a row and now wants to quit. What is the most effective response?",
+      "choices": [
+        "Ask what they enjoy, set small personal goals (like learning a new opening), celebrate progress over results, and pair them with a similar-level peer",
+        "Enter the child in an easier tournament so they can win and regain confidence",
+        "Suggest they try a different AIM activity that might suit them better",
+        "Encourage them to keep going, explaining that resilience comes from losing"
+      ],
+      "points": [
+        150,
+        75,
+        60,
+        45
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Listens to the child",
+          "points": 40
+        },
+        {
+          "label": "Process-focused goals",
+          "points": 50
+        },
+        {
+          "label": "Rebuilds confidence",
+          "points": 40
+        },
+        {
+          "label": "Protects lifelong passion",
+          "points": 20
+        }
+      ],
+      "explanation": "AIM’s mission is a lifelong passion: focusing on personal progress keeps motivation intrinsic.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Child motivation"
+    },
+    {
+      "id": "r4-06",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Child safety",
+      "prompt": "During camp, a coach notices a child has unexplained bruises and has become unusually withdrawn. What should the coach do?",
+      "choices": [
+        "Follow the academy’s child-protection procedure: record observations factually and report to the designated safeguarding lead the same day, without investigating",
+        "Gently ask the child what happened and record their full account in detail",
+        "Contact the parents directly to ask about the bruises before escalating",
+        "Watch the child closely over the next few sessions before reporting anything"
+      ],
+      "points": [
+        150,
+        60,
+        45,
+        30
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Reports promptly through the right channel",
+          "points": 60
+        },
+        {
+          "label": "Factual record, no investigation",
+          "points": 40
+        },
+        {
+          "label": "Protects the child’s wellbeing",
+          "points": 50
+        }
+      ],
+      "explanation": "Safeguarding best practice: report concerns promptly to the designated lead; coaches should not investigate or alert possible sources of harm.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Child safety"
+    },
+    {
+      "id": "r4-07",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Fair participation",
+      "prompt": "Twenty children want to join a tournament that only has 12 places. How should places be decided?",
+      "choices": [
+        "Use selection criteria shared in advance (attendance, effort, development) and offer the others a friendly match or alternative event",
+        "Draw names at random so selection is purely luck-based",
+        "Select the 12 strongest players to give the team its best chance",
+        "Let the children vote on who should go"
+      ],
+      "points": [
+        150,
+        75,
+        60,
+        30
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Transparent criteria",
+          "points": 40
+        },
+        {
+          "label": "Fair to every child",
+          "points": 40
+        },
+        {
+          "label": "Alternative for those not selected",
+          "points": 40
+        },
+        {
+          "label": "Development focus",
+          "points": 30
+        }
+      ],
+      "explanation": "Transparent criteria plus a meaningful alternative keeps it fair and developmental.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Fair participation"
+    },
+    {
+      "id": "r4-08",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Coaching ethics",
+      "prompt": "A parent offers a coach paid private sessions, hinting this should help their child get selected for the competitive team. What should the coach do?",
+      "choices": [
+        "Decline any link between private payment and selection, explain selection follows academy criteria, and inform management",
+        "Accept the private sessions but state clearly they will not affect selection",
+        "Decline politely without telling anyone, to avoid embarrassing the parent",
+        "Refer the parent to another coach for private sessions"
+      ],
+      "points": [
+        150,
+        75,
+        60,
+        45
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Integrity — no pay-for-selection",
+          "points": 50
+        },
+        {
+          "label": "Transparent with management",
+          "points": 40
+        },
+        {
+          "label": "Respectful communication",
+          "points": 30
+        },
+        {
+          "label": "Protects fairness for all",
+          "points": 30
+        }
+      ],
+      "explanation": "Selection must stay independent of payments; informing management protects the coach, the child and fairness.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Coaching ethics"
+    },
+    {
+      "id": "r4-09",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Confidence building",
+      "prompt": "A shy child in ballet freezes before her first performance. What should the coach do?",
+      "choices": [
+        "Acknowledge her nerves, rehearse a short part privately, start her in a group section, and praise her effort",
+        "Ask a parent to stand nearby during the performance for reassurance",
+        "Let her skip this performance and watch from backstage",
+        "Place her in the front row so she gets used to the spotlight quickly"
+      ],
+      "points": [
+        150,
+        75,
+        60,
+        30
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Validates feelings",
+          "points": 40
+        },
+        {
+          "label": "Gradual exposure",
+          "points": 50
+        },
+        {
+          "label": "Effort-based praise",
+          "points": 40
+        },
+        {
+          "label": "Keeps her involved",
+          "points": 20
+        }
+      ],
+      "explanation": "Gradual, supported exposure builds lasting confidence.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Confidence building"
+    },
+    {
+      "id": "r4-10",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Developing individual talents",
+      "prompt": "In the after-school program, a child shows exceptional drawing talent but is struggling academically. The parents want a homework-only focus. What is the best approach?",
+      "choices": [
+        "Meet the parents, share specific observations, propose homework support plus a short weekly arts slot, and review progress together",
+        "Follow the parents’ wish and keep the child on homework only",
+        "Suggest the parents look for an external art school",
+        "Enrol the child in arts and crafts sessions anyway, since talent should be nurtured"
+      ],
+      "points": [
+        150,
+        75,
+        45,
+        30
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Assess–Identify–Master approach",
+          "points": 50
+        },
+        {
+          "label": "Partnership with parents",
+          "points": 40
+        },
+        {
+          "label": "Child’s wellbeing and balance",
+          "points": 40
+        },
+        {
+          "label": "Follow-up plan",
+          "points": 20
+        }
+      ],
+      "explanation": "AIM = Assess, Identify, Master: identify the talent and build a balanced plan with the family.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Developing individual talents"
+    },
+    {
+      "id": "r4-11",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Teamwork",
+      "prompt": "TEAM DISCUSSION — agree as a team. Your U10 soccer team lost 8–0 and some players blame the goalkeeper. What is your team’s agreed post-match approach?",
+      "choices": [
+        "Huddle, acknowledge effort, name two things that went well and one to improve, and state clearly that the team wins and loses together",
+        "Skip discussion today and address it at the next training once emotions have calmed",
+        "Speak privately with the goalkeeper to reassure them, then move on",
+        "Review each goal conceded straight away while it is still fresh"
+      ],
+      "points": [
+        150,
+        90,
+        75,
+        45
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Shared responsibility",
+          "points": 50
+        },
+        {
+          "label": "Protects the goalkeeper",
+          "points": 40
+        },
+        {
+          "label": "Constructive learning",
+          "points": 40
+        },
+        {
+          "label": "Agreement quality (facilitator)",
+          "points": 20
+        }
+      ],
+      "explanation": "Collective responsibility protects individuals and builds team culture.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "discussion": true,
+      "area": "Teamwork"
+    },
+    {
+      "id": "r4-12",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Inclusion",
+      "prompt": "TEAM DISCUSSION — agree as a team. AIM is invited to a high-profile tournament (top players only) and a Heroes Initiative community event (all members) on the same weekend. Coaches are split. What does your team recommend?",
+      "choices": [
+        "Split resources: send a smaller squad to the tournament and involve all other members and coaches in the Heroes event, explaining the plan to families",
+        "Choose the community event, since inclusion is central to AIM",
+        "Choose the tournament for visibility and promote the community event online",
+        "Let families decide by survey which event AIM supports"
+      ],
+      "points": [
+        150,
+        90,
+        60,
+        45
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Balances tournaments and community impact",
+          "points": 50
+        },
+        {
+          "label": "Inclusion of all members",
+          "points": 40
+        },
+        {
+          "label": "Clear communication",
+          "points": 30
+        },
+        {
+          "label": "Agreement quality (facilitator)",
+          "points": 30
+        }
+      ],
+      "explanation": "The board’s model combines tournaments and community impact (p.5); the vision is about opportunities for all (p.3).",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "discussion": true,
+      "area": "Inclusion"
+    },
+    {
+      "id": "r4-13",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Parent communication",
+      "prompt": "TEAM DISCUSSION — agree as a team. A parent criticises a coach in the class WhatsApp group in front of other parents. What should AIM do?",
+      "choices": [
+        "Reply briefly in the group that you will call them directly, then discuss privately and follow up with a short written summary",
+        "Ask management to remove the message and contact the parent",
+        "Reply in the group with a full explanation so all parents hear the facts",
+        "Ignore it in the group and wait for the parent to contact the academy"
+      ],
+      "points": [
+        150,
+        75,
+        45,
+        45
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Moves the conversation to private",
+          "points": 40
+        },
+        {
+          "label": "Responds promptly and respectfully",
+          "points": 40
+        },
+        {
+          "label": "Follow-up in writing",
+          "points": 40
+        },
+        {
+          "label": "Agreement quality (facilitator)",
+          "points": 30
+        }
+      ],
+      "explanation": "Acknowledge publicly, resolve privately, and document the follow-up.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "discussion": true,
+      "area": "Parent communication"
+    },
+    {
+      "id": "r4-14",
+      "round": 4,
+      "type": "scenario",
+      "level": "application",
+      "status": "pending",
+      "active": true,
+      "topic": "Teamwork",
+      "prompt": "The choir and dance coaches disagree over rehearsal time for a joint showcase. What is the best way forward?",
+      "choices": [
+        "Meet together, map both groups’ needs, agree a shared schedule and create one joint piece that blends both groups",
+        "Split the rehearsal time equally and keep the two groups separate",
+        "Ask management to decide the schedule",
+        "Give priority to whichever group performs first"
+      ],
+      "points": [
+        150,
+        90,
+        60,
+        45
+      ],
+      "answer": 0,
+      "rubric": [
+        {
+          "label": "Collaborative problem-solving",
+          "points": 50
+        },
+        {
+          "label": "Fair to both groups",
+          "points": 40
+        },
+        {
+          "label": "Creates shared purpose",
+          "points": 40
+        },
+        {
+          "label": "Practical plan",
+          "points": 20
+        }
+      ],
+      "explanation": "Coaches modelling collaboration shows members what teamwork looks like.",
+      "source": "Hypothetical scenario (grounded in AIM vision, catalogue p.3)",
+      "area": "Teamwork"
+    },
+    {
+      "id": "r5-01",
+      "round": 5,
+      "type": "proposal",
+      "level": "strategic",
+      "status": "pending",
+      "active": true,
+      "title": "Lean launch",
+      "budget": "$2,500",
+      "constraints": [
+        "Use existing AIM Center space only",
+        "Up to 6 volunteers, no new hires",
+        "Must start within 3 months"
+      ],
+      "focus": "Any pillar",
+      "prompt": "AIM has the opportunity to introduce one new initiative next year. Design a proposal aligned with Faster, Stronger or Better.",
+      "source": "Hypothetical scenario",
+      "area": "Innovation"
+    },
+    {
+      "id": "r5-02",
+      "round": 5,
+      "type": "proposal",
+      "level": "strategic",
+      "status": "pending",
+      "active": true,
+      "title": "Partnership initiative",
+      "budget": "$10,000",
+      "constraints": [
+        "Must involve at least one partner organization",
+        "Must reach 100+ members or community participants",
+        "2 staff members part-time"
+      ],
+      "focus": "Any pillar",
+      "prompt": "AIM has the opportunity to introduce one new initiative next year. Design a proposal aligned with Faster, Stronger or Better.",
+      "source": "Hypothetical scenario",
+      "area": "Innovation"
+    },
+    {
+      "id": "r5-03",
+      "round": 5,
+      "type": "proposal",
+      "level": "strategic",
+      "status": "pending",
+      "active": true,
+      "title": "Inclusive program",
+      "budget": "$4,000",
+      "constraints": [
+        "2 coaches available 4 hours a week",
+        "Must be accessible to Heroes Initiative participants",
+        "Outdoor or AIM Center venues"
+      ],
+      "focus": "Any pillar",
+      "prompt": "AIM has the opportunity to introduce one new initiative next year. Design a proposal aligned with Faster, Stronger or Better.",
+      "source": "Hypothetical scenario",
+      "area": "Innovation"
+    },
+    {
+      "id": "r5-04",
+      "round": 5,
+      "type": "proposal",
+      "level": "strategic",
+      "status": "pending",
+      "active": true,
+      "title": "Skills for tomorrow",
+      "budget": "$6,000",
+      "constraints": [
+        "One external expert trainer for 8 sessions",
+        "Participants aged 16+",
+        "Must show results within one season"
+      ],
+      "focus": "Any pillar",
+      "prompt": "AIM has the opportunity to introduce one new initiative next year. Design a proposal aligned with Faster, Stronger or Better.",
+      "source": "Hypothetical scenario",
+      "area": "Innovation"
+    }
+  ]
+}
