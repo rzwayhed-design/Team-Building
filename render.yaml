@@ -1,0 +1,19 @@
+# One-click deploy on Render: Dashboard → New → Blueprint → pick this repo.
+# Free plan: sleeps after ~15 min without visitors and forgets events when it restarts.
+# To keep events, switch to plan: starter and add the disk block shown below.
+services:
+  - type: web
+    name: team-up
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+#    disk:
+#      name: team-up-data
+#      mountPath: /var/data
+#      sizeGB: 1
+#  (with the disk, also add env var DATA_FILE = /var/data/events.json)
